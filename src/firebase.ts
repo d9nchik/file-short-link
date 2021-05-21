@@ -30,8 +30,5 @@ firebase.auth().useDeviceLanguage();
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 export const signInWithGoogle = (): Promise<firebase.auth.UserCredential> =>
   auth.signInWithPopup(googleProvider);
-const githubProvider = new firebase.auth.GithubAuthProvider();
-export const signInWithGitHub = (): Promise<firebase.auth.UserCredential> =>
-  auth.signInWithPopup(githubProvider);
 
 export default firebase;
