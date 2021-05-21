@@ -1,6 +1,12 @@
 import { getUser } from './auth';
 import { storage, firestore as db } from '../firebase';
 
+export interface LinkObj {
+  fileName: string;
+  filePath: string;
+  smallLink: string;
+}
+
 export const uploadFile = async (file: File): Promise<string> => {
   const user = getUser();
   if (!user) {
