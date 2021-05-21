@@ -64,3 +64,17 @@ function numberToValue(num: number): string {
   }
   return link;
 }
+
+export const getLinkObjByShortLink = async (
+  shortLink: string
+): Promise<null | LinkObj> => {
+  const document = await db
+    .collection('links')
+    .where('smallLink', '==', shortLink)
+    .limit(1)
+    .get();
+  if (document.size === 0) {
+    return null;
+  }
+  return document.docs[0].data() as LinkObj;
+};
