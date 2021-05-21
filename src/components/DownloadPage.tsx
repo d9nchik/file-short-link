@@ -8,7 +8,8 @@ interface ParamTypes {
 
 const DownloadPage: FunctionComponent = () => {
   const { id: shortLink } = useParams<ParamTypes>();
-  const [fullPath, setFullPath] = useState<string | null>(null);
+  const [fullPath, setFullPath] =
+    useState<string | null | undefined>(undefined);
   const [fileName, setFileName] = useState<string>('');
   const anchor = useRef<HTMLAnchorElement>(null);
 
@@ -22,6 +23,9 @@ const DownloadPage: FunctionComponent = () => {
       setFileName(result.fileName);
     })();
   });
+  if (fullPath === undefined) {
+    return <div>Loading...</div>;
+  }
 
   if (!fullPath) {
     return (
